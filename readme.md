@@ -25,3 +25,7 @@ mv ~/.zsrhc ~/.zshrc.old
 ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ```
 
+## neovim
+```bash
+ln -s ~/.dotfiles/nvim ~/.config/nvim
+```
