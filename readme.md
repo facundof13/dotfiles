@@ -2,7 +2,6 @@
 
 ## iTerm2
 - clone repo
-- ```
-defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iterm2"
-defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
-```
+- <code>defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.dotfiles/iterm2"<br>
+&nbsp;defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+</code>
