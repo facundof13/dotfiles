@@ -1,5 +1,8 @@
 # .Dotfiles syncing
 
+## Homebrew
+- install homebrew from [official site](https://brew.sh/)
+
 ## iTerm2
 - clone repo
 ```bash
