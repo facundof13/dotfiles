@@ -26,6 +26,12 @@ ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
 ```
 
 ## neovim
+- install neovim
+```bash
+brew install neovim
+```
+
+Symlink directories
 ```bash
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ```
