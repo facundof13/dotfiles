@@ -13,9 +13,10 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true</code>
 brew install zsh
 ```
 
-- install oh-my-zsh
+- install oh-my-zsh and powerlevel10k
 ```bash
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 
 ```
 
 Symlink directories
