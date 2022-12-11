@@ -133,6 +133,7 @@ cdf() {
 	fi
 }
 
+alias lg="lazygit"
 alias reloadzsh=". ~/.zshrc"
 alias editzsh="code ~/.zshrc"
 alias sshpi='ssh pi@raspberrypi.local'

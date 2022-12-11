@@ -8,3 +8,5 @@ saga.init_lsp_saga({
   finder_action_keys = {open = "<CR>"},
   definition_action_keys = {edit = "<CR>"},
 })
+
+vim.keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>")

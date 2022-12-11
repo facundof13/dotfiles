@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 -- general keymaps
 keymap("n", "<leader>/", ":nohl<CR>", default_ops)
 keymap("n", "J", "5j", default_ops)
+keymap("n", "K", "5k", default_ops)
 keymap("n", "<leader>j", "J", default_ops)
 keymap("n", "<C-u>", "<C-u>zz", default_ops)
 keymap("n", "<C-d>", "<C-d>zz", default_ops)
@@ -30,7 +31,7 @@ keymap("n", "<leader>sm", ":MaximizerToggle<CR>", default_ops)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", default_ops)
 
 -- telescope
-keymap("n", "<leader>p", "<cmd>Telescope find_files<cr>", default_ops) -- find files within current working directory, respects .gitignore
+keymap("n", "<leader>p", "<cmd>Telescope find_files hidden=true<cr>", default_ops) -- find files within current working directory, respects .gitignore
 keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", default_ops) -- find string in current working directory as you type
 keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", default_ops) -- find string under cursor in current working directory
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", default_ops) -- list open buffers in current neovim instance
@@ -44,7 +45,6 @@ keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>", default_ops) -- list 
 
 -- restart lsp server (not on youtube nvim video)
 keymap("n", "<leader>rs", ":LspRestart<CR>", default_ops) -- mapping to restart lsp if necessary
-keymap("n", "K", "5k", default_ops)
 
 -- Resizing panes
 keymap("n", "<Left>", ":vertical resize +1<CR>", default_ops)
@@ -60,3 +60,6 @@ keymap("v", ">", ">gv", default_ops)
 -- Switch buffer
 keymap("n", "<S-h>", ":bprevious<CR>", default_ops)
 keymap("n", "<S-l>", ":bnext<CR>", default_ops)
+
+keymap("n", "n", "nzz", default_ops);
+keymap("n", "N", "Nzz", default_ops);

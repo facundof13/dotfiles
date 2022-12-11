@@ -39,3 +39,6 @@ opt.iskeyword:append("-")
 
 -- whick-key timeout
 opt.timeoutlen = 300
+
+-- disable annoying swap files
+vim.cmd [[set noswapfile]]
