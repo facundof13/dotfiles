@@ -9,28 +9,11 @@ if not actions_setup then
   return
 end
 
-local config_setup, telescope_config = pcall(require, "telescope.config")
-if not config_setup then
-  return
-end
-
-local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
-
-table.insert(vimgrep_arguments, "--hidden")
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/.git/*")
-table.insert(vimgrep_arguments, "-u")
-table.insert(vimgrep_arguments, "--no-ignore-vcs")
-
 telescope.setup({
   defaults = {
-    vimgrep_arguments = vimgrep_arguments,
-    pickers = {
-      find_files = {
-        find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "-u", "--no-ignore-vcs"},
-      },
-      current_buffer_fuzzy_find = {
-      },
+    file_ignore_patterns = {
+      "%.pdf",
+      ".git/"
     },
     mappings = {
       i = {
