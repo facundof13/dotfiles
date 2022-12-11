@@ -68,6 +68,18 @@ return packer.startup(function(use)
 
   use("folke/which-key.nvim")
 
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      require("nvim-treesitter.install").update({with_sync = true})
+    end,
+    })
+
+    use("windwp/nvim-autopairs")
+    use("windwp/nvim-ts-autotag")
+
+  use("lewis6991/'gitsigns.nvim")
+
   if packer_bootstrap then
     require("packer").sync()
   end

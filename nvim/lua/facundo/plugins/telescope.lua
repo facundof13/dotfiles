@@ -29,6 +29,8 @@ telescope.setup({
       find_files = {
         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "-u", "--no-ignore-vcs"},
       },
+      current_buffer_fuzzy_find = {
+      },
     },
     mappings = {
       i = {
