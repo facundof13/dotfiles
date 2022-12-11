@@ -6,7 +6,6 @@ vim.g.mapleader = " "
 -- general keymaps
 keymap("n", "<leader>/", ":nohl<CR>", default_ops)
 keymap("n", "J", "5j", default_ops)
-keymap("n", "K", "5k", default_ops)
 keymap("n", "<leader>j", "J", default_ops)
 keymap("n", "<C-u>", "<C-u>zz", default_ops)
 keymap("n", "<C-d>", "<C-d>zz", default_ops)
@@ -45,3 +44,19 @@ keymap("n", "<leader>gs", "<cmd>Telescope git_status<cr>", default_ops) -- list 
 
 -- restart lsp server (not on youtube nvim video)
 keymap("n", "<leader>rs", ":LspRestart<CR>", default_ops) -- mapping to restart lsp if necessary
+keymap("n", "K", "5k", default_ops)
+
+-- Resizing panes
+keymap("n", "<Left>", ":vertical resize +1<CR>", default_ops)
+keymap("n", "<Right>", ":vertical resize -1<CR>", default_ops)
+keymap("n", "<Up>", ":resize -1<CR>", default_ops)
+keymap("n", "<Down>", ":resize +1<CR>", default_ops)
+
+-- Better indent
+keymap("v", "<", "<gv", default_ops)
+keymap("v", ">", ">gv", default_ops)
+
+
+-- Switch buffer
+keymap("n", "<S-h>", ":bprevious<CR>", default_ops)
+keymap("n", "<S-l>", ":bnext<CR>", default_ops)
