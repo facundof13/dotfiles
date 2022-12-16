@@ -13,14 +13,15 @@ telescope.setup({
   defaults = {
     file_ignore_patterns = {
       "%.pdf",
-      ".git/"
+      ".git/",
+      ".*/ckeditor.js",
+      ".DS_Store"
     },
     mappings = {
       i = {
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-p>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<esc>"] = actions.close
       }
     }
   }

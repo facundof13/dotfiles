@@ -40,7 +40,9 @@ opt.iskeyword:append("-")
 -- whick-key timeout
 opt.timeoutlen = 300
 
-opt.hidden = true
+vim.cmd [[set hidden]]
 
 -- disable annoying swap files
 vim.cmd [[set noswapfile]]
+
+vim.opt.spell = true

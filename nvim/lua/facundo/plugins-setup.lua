@@ -80,6 +80,10 @@ return packer.startup(function(use)
 
   use("lewis6991/gitsigns.nvim")
 
+  use("norcalli/nvim-colorizer.lua")
+
+  use ('numToStr/Navigator.nvim')
+
   if packer_bootstrap then
     require("packer").sync()
   end

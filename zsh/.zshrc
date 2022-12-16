@@ -137,8 +137,6 @@ alias lg="lazygit"
 alias reloadzsh=". ~/.zshrc"
 alias editzsh="code ~/.zshrc"
 alias sshpi='ssh pi@raspberrypi.local'
-alias startfront='cd ~/development/esm/esm-ui && npm start'
-alias startback='cd ~/development/esm/esm-api; pm2 delete all; npm run build'
 alias codd='ssh ffigueroa2@codd.cs.gsu.edu'
 alias python="python3.9"
 alias pip="pip3.9"
@@ -147,6 +145,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 alias esmapi="cd ~/developer/esm/esm-api"
 alias esmui="cd ~/developer/esm/esm-ui"
+alias esm="cd ~/developer/esm; nvim"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

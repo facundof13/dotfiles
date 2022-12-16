@@ -65,3 +65,11 @@ keymap("n", "<S-l>", ":bnext<CR>", default_ops)
 keymap("n", "n", "nzz", default_ops);
 keymap("n", "N", "Nzz", default_ops);
 keymap("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", default_ops)
+
+
+-- Tmux
+keymap("n", "<A-h>", "<Cmd>NavigatorLeft<CR>", default_ops)
+keymap("n", "<A-j>", "<Cmd>NavigatorDown<CR>", default_ops)
+keymap("n", "<A-k>", "<Cmd>NavigatorUp<CR>", default_ops)
+keymap("n", "<A-l>", "<Cmd>NavigatorRight<CR>", default_ops)
+keymap("n", "<A-\\>", "<Cmd>NavigatorPrevious<CR>", default_ops)
