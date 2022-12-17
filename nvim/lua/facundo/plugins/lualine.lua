@@ -6,5 +6,12 @@ end
 lualine.setup({
   options = {
     theme = 'moonlight'
+  },
+  sections = {
+    lualine_c = {
+      {
+        'filename', path = 1,
+      }
+    }
   }
 })

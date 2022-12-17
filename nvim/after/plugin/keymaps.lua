@@ -67,9 +67,47 @@ keymap("n", "N", "Nzz", default_ops);
 keymap("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", default_ops)
 
 
--- Tmux
-keymap("n", "<A-h>", "<Cmd>NavigatorLeft<CR>", default_ops)
-keymap("n", "<A-j>", "<Cmd>NavigatorDown<CR>", default_ops)
-keymap("n", "<A-k>", "<Cmd>NavigatorUp<CR>", default_ops)
-keymap("n", "<A-l>", "<Cmd>NavigatorRight<CR>", default_ops)
-keymap("n", "<A-\\>", "<Cmd>NavigatorPrevious<CR>", default_ops)
+-- -- Tmux
+-- keymap("n", "<A-h>", "<Cmd>NavigatorLeft<CR>", default_ops)
+-- keymap("n", "<A-j>", "<Cmd>NavigatorDown<CR>", default_ops)
+-- keymap("n", "<A-k>", "<Cmd>NavigatorUp<CR>", default_ops)
+-- keymap("n", "<A-l>", "<Cmd>NavigatorRight<CR>", default_ops)
+-- keymap("n", "<A-\\>", "<Cmd>NavigatorPrevious<CR>", default_ops)
+
+-- Debug
+keymap('n', '<leader>dct', '<cmd>lua require"dap".continue()<CR>',default_ops)
+keymap('n', '<leader>dsv', '<cmd>lua require"dap".step_over()<CR>',default_ops)
+keymap('n', '<leader>dsi', '<cmd>lua require"dap".step_into()<CR>',default_ops)
+keymap('n', '<leader>dso', '<cmd>lua require"dap".step_out()<CR>',default_ops)
+keymap('n', '<leader>dtb', '<cmd>lua require"dap".toggle_breakpoint()<CR>',default_ops)
+
+keymap('n', '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>',default_ops)
+keymap('n', '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>',default_ops)
+keymap('v', '<leader>dhv',
+          '<cmd>lua require"dap.ui.variables".visual_hover()<CR>',default_ops)
+
+keymap('n', '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>',default_ops)
+keymap('n', '<leader>duf',
+          "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>",default_ops)
+
+keymap('n', '<leader>dsbr',
+          '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',default_ops)
+keymap('n', '<leader>dsbm',
+          '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',default_ops)
+keymap('n', '<leader>dro', '<cmd>lua require"dap".repl.open()<CR>',default_ops)
+keymap('n', '<leader>drl', '<cmd>lua require"dap".repl.run_last()<CR>',default_ops)
+
+
+-- telescope-dap
+keymap('n', '<leader>dcc',
+          '<cmd>lua require"telescope".extensions.dap.commands{}<CR>',default_ops)
+keymap('n', '<leader>dco',
+          '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>',default_ops)
+keymap('n', '<leader>dlb',
+          '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>',default_ops)
+keymap('n', '<leader>dv',
+          '<cmd>lua require"telescope".extensions.dap.variables{}<CR>',default_ops)
+keymap('n', '<leader>df','<cmd>lua require"telescope".extensions.dap.frames{}<CR>',default_ops)
+
+-- switch buffer
+keymap('n', '<C-s>','<cmd>SwitchBuffer<CR>',default_ops)

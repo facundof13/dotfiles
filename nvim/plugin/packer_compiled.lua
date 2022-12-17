@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/Navigator.nvim",
     url = "https://github.com/numToStr/Navigator.nvim"
   },
+  ["Nvim-Switch-Buffer"] = {
+    loaded = true,
+    path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/Nvim-Switch-Buffer",
+    url = "https://github.com/Yohannfra/Nvim-Switch-Buffer"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -144,6 +149,11 @@ _G.packer_plugins = {
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/mason-null-ls.nvim",
     url = "https://github.com/jayp0521/mason-null-ls.nvim"
   },
+  ["mason-nvim-dap.nvim"] = {
+    loaded = true,
+    path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/mason-nvim-dap.nvim",
+    url = "https://github.com/jayp0521/mason-nvim-dap.nvim"
+  },
   ["mason.nvim"] = {
     loaded = true,
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/mason.nvim",
@@ -173,6 +183,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -208,6 +228,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["telescope-dap.nvim"] = {
+    loaded = true,
+    path = "/Users/facundofigueroa/.local/share/nvim/site/pack/packer/start/telescope-dap.nvim",
+    url = "https://github.com/nvim-telescope/telescope-dap.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,

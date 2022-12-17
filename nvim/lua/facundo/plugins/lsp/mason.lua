@@ -13,7 +13,23 @@ if not mason_null_ls_status then
   return
 end
 
+local mason_nvim_dap_status, mason_nvim_dap = pcall(require, "mason-nvim-dap")
+if not mason_nvim_dap_status then
+  return
+end
+
+local dap_status, dap = pcall(require, "dap")
+if not dap_status then
+  return
+end
+
+local dap_ui_status, dap_ui = pcall(require, "dapui")
+if not dap_ui_status then
+  return
+end
+
 mason.setup()
+dap_ui.setup()
 
 mason_lspconfig.setup({
   ensure_installed = {
@@ -33,3 +49,29 @@ mason_null_ls.setup({
     "eslint_d",
   },
 })
+
+mason_nvim_dap.setup({
+  automatic_installation = true,
+  automatic_setup = true,
+  ensure_installed = {
+  "node2",
+  "chrome"
+  }
+})
+
+mason_nvim_dap.setup_handlers()
+
+vim.fn.sign_define('DapBreakpoint', {
+  text = '🟥',
+  texthl = '',
+  linehl = '',
+  numhl = '',
+})
+
+vim.fn.sign_define('DapStopped', {
+  text = '🟢',
+  texthl = '',
+  linehl = '',
+  numhl = '',
+})
+

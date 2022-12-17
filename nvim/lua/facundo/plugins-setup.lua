@@ -62,6 +62,9 @@ return packer.startup(function(use)
   use{"glepnir/lspsaga.nvim", branch="main"}
   use("jose-elias-alvarez/typescript.nvim")
   use("onsails/lspkind.nvim")
+  use("mfussenegger/nvim-dap")
+  use("nvim-telescope/telescope-dap.nvim")
+  use("jayp0521/mason-nvim-dap.nvim")
 
   use("jose-elias-alvarez/null-ls.nvim")
   use("jayp0521/mason-null-ls.nvim")
@@ -82,7 +85,11 @@ return packer.startup(function(use)
 
   use("norcalli/nvim-colorizer.lua")
 
-  use ('numToStr/Navigator.nvim')
+  use ("numToStr/Navigator.nvim")
+
+  use ("Yohannfra/Nvim-Switch-Buffer")
+
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
   if packer_bootstrap then
     require("packer").sync()
