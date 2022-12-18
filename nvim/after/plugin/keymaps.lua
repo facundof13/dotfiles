@@ -111,3 +111,6 @@ keymap('n', '<leader>df','<cmd>lua require"telescope".extensions.dap.frames{}<CR
 
 -- switch buffer
 keymap('n', '<C-s>','<cmd>SwitchBuffer<CR>',default_ops)
+
+-- del buffer
+keymap('n','<leader>x','<cmd>bdel<cr>',default_ops)
