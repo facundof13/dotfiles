@@ -18,11 +18,6 @@ if not mason_nvim_dap_status then
   return
 end
 
-local dap_status, dap = pcall(require, "dap")
-if not dap_status then
-  return
-end
-
 local dap_ui_status, dap_ui = pcall(require, "dapui")
 if not dap_ui_status then
   return

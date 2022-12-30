@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>AnonymousTmuxWindowsOpenInCurrentWindow</key>
@@ -10,6 +12,8 @@
 	<true/>
 	<key>ClosingTmuxTabKillsTmuxWindows_selection</key>
 	<integer>0</integer>
+	<key>CopySelection</key>
+	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>109E8C5E-C8D6-40B6-8595-07E77BD2C95F</string>
 	<key>Default Toolbelt Width</key>
@@ -20,10 +24,14 @@
 	<false/>
 	<key>DisableTmuxWindowResizing</key>
 	<false/>
+	<key>DoubleClickPerformsSmartSelection</key>
+	<false/>
 	<key>EnableAPIServer</key>
 	<true/>
 	<key>EnableDivisionView</key>
 	<true/>
+	<key>EnterCopyModeAutomatically</key>
+	<false/>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000-0x0</key>
@@ -1729,6 +1737,8 @@
 	<array>
 		<string>Recent Directories</string>
 	</array>
+	<key>TripleClickSelectsFullWrappedLines</key>
+	<false/>
 	<key>UseBorder</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>

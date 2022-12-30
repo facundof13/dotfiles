@@ -34,9 +34,11 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", default_ops)
 keymap("n", "<leader>p", "<cmd>Telescope find_files hidden=true<cr>", default_ops) -- find files within current working directory, respects .gitignore
 keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", default_ops) -- find string in current working directory as you type
 keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", default_ops) -- find string under cursor in current working directory
-keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", default_ops) -- list open buffers in current neovim instance
+keymap("n", "<C-b>", "<cmd>Telescope buffers<cr>", default_ops) -- list open buffers in current neovim instance
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", default_ops) -- list available help tags
 keymap("n", "<leader>ff", "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false<cr>", default_ops) -- list available help tags
+keymap("n", "<leader>fa", "<cmd>Telescope lsp_document_symbols<cr>", default_ops) -- list available help tags
+keymap("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", default_ops) -- list old files opened
 
 -- telescope git commands (not on youtube nvim video)
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", default_ops) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
@@ -114,3 +116,6 @@ keymap('n', '<C-s>','<cmd>SwitchBuffer<CR>',default_ops)
 
 -- del buffer
 keymap('n','<leader>x','<cmd>bdel!<cr>',default_ops)
+
+-- alt delete
+keymap('n','<A-BS>','<C-w>', default_ops)

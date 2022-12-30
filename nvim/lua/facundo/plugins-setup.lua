@@ -34,7 +34,15 @@ return packer.startup(function(use)
 
   use("szw/vim-maximizer")
 
-  use("tpope/vim-surround")
+  use({
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+  })
 
   use("numToStr/Comment.nvim")
 
@@ -90,6 +98,8 @@ return packer.startup(function(use)
   use ("Yohannfra/Nvim-Switch-Buffer")
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
+  use('mbbill/undotree')
 
   if packer_bootstrap then
     require("packer").sync()
