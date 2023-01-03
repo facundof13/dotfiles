@@ -121,7 +121,7 @@ export NVM_DIR="$HOME/.nvm"
 # Onwards HR
 alias product_dev='ssh -i ~/eperkz.pem ec2-user@ec2-3-22-111-115.us-east-2.compute.amazonaws.com'
 alias product_qa='ssh -i ~/eperkz.pem ec2-user@ec2-3-18-47-185.us-east-2.compute.amazonaws.com'
-alias product_uat='ssh -i ~/eperkz.pem ec2-user@ec2-3-128-5-214.us-east-2.compute.amazonaws.com'
+alias product_uat='ssh -i ~/eperkz.pem ec2-user@3.128.14.203'
 
 # cd to the path of the front Finder window
 cdf() {
