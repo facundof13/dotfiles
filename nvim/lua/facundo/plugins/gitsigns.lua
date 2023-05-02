@@ -3,6 +3,8 @@ if not setup then
   return
 end
 
+require('scrollbar').setup()
+require('scrollbar.handlers.gitsigns').setup()
 gitsigns.setup{
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
