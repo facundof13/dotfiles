@@ -1,5 +1,0 @@
-require("facundo.plugins.lsp.mason")
--- require("facundo.plugins.lsp.mason-nvim-dap")
-require("facundo.plugins.lsp.lspsaga")
-require("facundo.plugins.lsp.lspconfig")
-require("facundo.plugins.lsp.null-ls")
