@@ -1,0 +1,31 @@
+{
+  "title": "Map CMD-Delete to Archive in Mail.app",
+  "rules": [
+    {
+      "description": "Map CMD-Delete to Archive in Mail.app",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "delete_or_backspace"
+          },
+          "to": [{
+            "key_code": "a",
+            "modifiers": [
+              "left_control",
+              "left_command"
+            ]
+          }],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com.apple.Mail$"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
