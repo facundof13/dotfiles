@@ -1,4 +1,4 @@
-source /usr/facebook/ops/rc/master.zshrc
+[ -f /usr/facebook/ops/rc/master.zshrc ] && source /usr/facebook/ops/rc/master.zshrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -74,9 +74,6 @@ eval "$(zoxide init zsh)"
 zf() { z "$(dirname "$1")"; }
 # zshrc is sourced in interactive shells.  It should contain commands to set up
 # aliases, functions, options, key bindings, etc.
-
-# Load Facebook stuff (don't remove this line).
-source /usr/facebook/ops/rc/master.zshrc
 
 # Keep oodles of command history (see https://fburl.com/zshhistory).
 HISTFILE=~/.zsh_history
