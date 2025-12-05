@@ -110,4 +110,4 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 zf() { z "$(dirname "$1")"; }
 
-alias la="eza --color"
+alias la="eza --color -l"
