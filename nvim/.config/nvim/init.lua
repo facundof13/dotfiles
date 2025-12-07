@@ -28,10 +28,26 @@ vim.keymap.set("n", "<leader>/", ":noh<CR>")
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Enable true color support
+vim.opt.termguicolors = true
+
 -- Setup lazy.nvim
 require("lazy").setup({
         -- PLUGINS GO HERE
         spec = {
+		{
+		    "Mofiqul/dracula.nvim",
+		    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		    priority = 1000, -- make sure to load this before all the other start plugins
+		    config = function()
+		      -- Configure tokyonight to use transparent background
+		      require("dracula").setup({
+			transparent_bg = true,
+		      })
+		      -- load the colorscheme here
+		      vim.cmd([[colorscheme dracula]])
+		    end,
+		  },
                 {
                         "kylechui/nvim-surround",
                         version = "^3.0.0",
@@ -74,11 +90,12 @@ require("lazy").setup({
                                 })
                         end,
                 },
-                {"https://github.com/ibhagwan/fzf-lua"}
+                {"https://github.com/ibhagwan/fzf-lua"},
         },
         -- Configure any other settings here. See the documentation for more details.
         -- colorscheme that will be used when installing plugins.
         install = {--[[  colorscheme = { "habamax" }  ]]
+
         },
         -- automatically check for plugin updates
         checker = { enabled = true },

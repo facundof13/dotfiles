@@ -111,3 +111,8 @@ eval "$(zoxide init zsh)"
 zf() { z "$(dirname "$1")"; }
 
 alias la="eza --color -l"
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
