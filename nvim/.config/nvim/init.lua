@@ -31,9 +31,6 @@ vim.opt.smartcase = true
 -- Enable true color support
 vim.opt.termguicolors = true
 
--- Set cursor shapes for different modes
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
-
 -- Setup lazy.nvim
 require("lazy").setup({
         -- PLUGINS GO HERE
