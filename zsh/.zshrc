@@ -119,3 +119,6 @@ setopt PUSHD_MINUS
 
 # Set cursor to vertical line (beam)
 echo -ne '\e[6 q'
+
+PS1='%n@%m %~ $ '
+alias rg="rg -i"
