@@ -110,7 +110,7 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh)"
 zf() { z "$(dirname "$1")"; }
 
-alias la="eza --color -l"
+alias la="eza --color -lah"
 
 setopt AUTO_CD
 setopt AUTO_PUSHD
