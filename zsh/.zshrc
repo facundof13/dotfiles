@@ -122,3 +122,12 @@ echo -ne '\e[6 q'
 
 PS1='%n@%m %~ $ '
 alias rg="rg -i"
+
+unalias nvim 2>/dev/null
+nvim() {
+  if [[ -e /tmp/nvim.sock ]]; then
+    command nvim "$@"
+  else
+    command nvim --listen /tmp/nvim.sock "$@"
+  fi
+}

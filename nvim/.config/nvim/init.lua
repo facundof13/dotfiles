@@ -94,20 +94,35 @@ require("lazy").setup({
 		},
 		{
 			'nvim-telescope/telescope.nvim',
-			dependencies = { 'nvim-lua/plenary.nvim' },
+			dependencies = {
+				'nvim-lua/plenary.nvim',
+				{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+			},
 			cond = not vim.g.vscode,
 			config = function()
 				local actions = require('telescope.actions')
 				require('telescope').setup({
+					extensions = {
+						fzf = {
+							fuzzy = true,
+							override_generic_sorter = true,
+							overide_file_sorter = true,
+							case_mode = "smart_case"
+						},
+					},
 					defaults = {
+						layout_strategy = 'flex',
 						mappings = {
 							i = {
-								["<C-q>"] = actions.send_selected_to_qflist +
-								    actions.open_qflist,
+								["<C-q>"] = actions.send_to_qflist + actions.open_qflist, -- send ALL
+								["<M-q>"] = actions.send_selected_to_qflist +
+								    actions.open_qflist, -- send selected only
+								["<C-h>"] = "which_key"
 							},
 							n = {
-								["<C-q>"] = actions.send_selected_to_qflist +
-								    actions.open_qflist,
+								["<C-q>"] = actions.send_to_qflist + actions.open_qflist, -- send ALL
+								["<M-q>"] = actions.send_selected_to_qflist +
+								    actions.open_qflist, -- send selected only
 							},
 						},
 					},
@@ -203,6 +218,7 @@ require("lazy").setup({
 						javascriptreact = { 'prettier' },
 						json = { 'prettier' },
 						html = { 'prettier' },
+						htmlangular = { 'prettier' },
 						css = { 'prettier' },
 					},
 					format_on_save = {
@@ -243,24 +259,65 @@ require("lazy").setup({
 			config = function()
 				require('lualine').setup()
 			end
-		}
-	},
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
 		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
+		{
+			"folke/which-key.nvim",
+			event = "VeryLazy",
+			init = function()
+				vim.o.timeout = true
+				vim.o.timeoutlen = 300
+			end,
+			opts = {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+			}
+		},
+		{
+			"mfussenegger/nvim-dap",
+			cond = not vim.g.vscode,
+			dependencies = {
+				"rcarriga/nvim-dap-ui",
+				"nvim-neotest/nvim-nio",
 			},
+			config = function()
+				local dap = require("dap")
+				local dapui = require("dapui")
+
+				dapui.setup()
+
+				dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+				dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+				dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+
+				dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+				dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+				dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+				dap.listeners.before.disconnect["dapui_config"] = function() dapui.close() end
+
+				-- Manual adapter setup for pwa-node
+				dap.adapters["pwa-node"] = {
+					type = "server",
+					host = "localhost",
+					port = "${port}",
+					executable = {
+						command = "node",
+						args = {
+							vim.fn.stdpath("data") ..
+							"/lazy/vscode-js-debug/out/src/vsDebugServer.js",
+							"${port}",
+						},
+					},
+				}
+
+				vim.keymap.set("n", "<F5>", function()
+					require("dap.ext.vscode").load_launchjs()
+					dap.continue()
+				end, { desc = "Start/Continue debugging" })
+				vim.keymap.set("n", "<F9>", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+				vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
+				vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
+				vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
+			end,
 		},
 	},
 	-- Configure any other settings here. See the documentation for more details.
@@ -315,12 +372,21 @@ vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>fh', ':Telescope help_tags<CR>')
 vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>')
 vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>')
+vim.keymap.set('n', '<leader>fo', ':Telescope oldfiles<CR>')
+vim.keymap.set('n', '<leader>fc', ':Telescope current_buffer_fuzzy_find<CR>')
 vim.keymap.set('n', '<leader>o', '<cmd>Telescope lsp_document_symbols<cr>', { desc = 'Document symbols' })
 
 -- diagnostic
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+vim.keymap.set('n', 'gl', function()
+	vim.diagnostic.open_float({ wrap = false })
+end, { desc = 'Show diagnostic' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previos diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next Diagnostic' })
+local gotoDiagnosticErrors = function()
+	require('telescope.builtin').diagnostics({ severity = vim.diagnostic.severity.ERROR });
+end
+vim.keymap.set('n', ']E', gotoDiagnosticErrors, { desc = 'View errors in diagnostic' })
+vim.keymap.set('n', '[E', gotoDiagnosticErrors, { desc = 'View errors in diagnostic' })
 
 -- Leap.nvim (jump to any character)
 vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-anywhere)")
@@ -330,6 +396,9 @@ vim.opt.gdefault = true
 -- rename symbol
 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, { desc = 'Rename symbol' })
 
+-- go to next quickfix item
+vim.keymap.set('n', '<M-j>', ':cnext<CR>')
+vim.keymap.set('n', '<M-k>', ':cprev<CR>')
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -354,6 +423,8 @@ end, { desc = 'Copy relative path' })
 vim.opt.autoread = true
 vim.cmd.colorscheme "catppuccin"
 
-vim.keymap.set("n", "<leader>en", function()
-	print("hello world")
-end, { desc = "Edit Neovim config" })
+vim.keymap.set("n", "<leader>en", ':e $MYVIMRC<CR>', { desc = "Edit Neovim config" })
+vim.keymap.set("n", "<leader>et", ':e ~/.tmux.conf<CR>', { desc = "Edit tmux config" })
+vim.opt.ruler = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both"
