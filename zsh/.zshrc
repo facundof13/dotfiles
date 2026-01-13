@@ -131,3 +131,4 @@ nvim() {
     command nvim --listen /tmp/nvim.sock "$@"
   fi
 }
+export PATH="$HOME/.local/bin:$PATH"

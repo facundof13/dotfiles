@@ -273,6 +273,11 @@ require("lazy").setup({
 			}
 		},
 		{
+			"microsoft/vscode-js-debug",
+			lazy = true,
+			build = "npm install --legacy-peer-deps && npx gulp dapDebugServer",
+		},
+		{
 			"mfussenegger/nvim-dap",
 			cond = not vim.g.vscode,
 			dependencies = {
@@ -281,36 +286,32 @@ require("lazy").setup({
 			},
 			config = function()
 				local dap = require("dap")
-				local dapui = require("dapui")
-
-				dapui.setup()
-
-				dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
-				dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-				dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
-
-				dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
-				dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-				dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
-				dap.listeners.before.disconnect["dapui_config"] = function() dapui.close() end
-
-				-- Manual adapter setup for pwa-node
+				local path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/dist/src/dapDebugServer.js"
+				require('dapui').setup()
 				dap.adapters["pwa-node"] = {
 					type = "server",
 					host = "localhost",
 					port = "${port}",
 					executable = {
 						command = "node",
-						args = {
-							vim.fn.stdpath("data") ..
-							"/lazy/vscode-js-debug/out/src/vsDebugServer.js",
-							"${port}",
-						},
+						args = { path, "${port}" },
+					},
+					sourceMaps = true,
+					resolveSourceMapLocations = {
+						"${workspaceFolder}/**",
+						"!**/node_modules/**",
 					},
 				}
 
+				dap.listeners.after['event_initialized']["open_dapui_config"] = function()
+					require(
+						"dapui").open()
+				end
+				dap.listeners.before.event_exited["dapui_config"] = function()
+					require("dapui").close()
+				end
+
 				vim.keymap.set("n", "<F5>", function()
-					require("dap.ext.vscode").load_launchjs()
 					dap.continue()
 				end, { desc = "Start/Continue debugging" })
 				vim.keymap.set("n", "<F9>", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
@@ -319,6 +320,21 @@ require("lazy").setup({
 				vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
 			end,
 		},
+		{
+			"Isrothy/neominimap.nvim",
+			init = function()
+				vim.opt.wrap = false
+				vim.opt.sidescrolloff = 36 -- Set a large value
+
+				vim.g.neominimap = {
+
+					auto_enable = true,
+					diagnostic = {
+						severity = vim.diagnostic.severity.ERROR
+					}
+				}
+			end,
+		}
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -387,6 +403,7 @@ local gotoDiagnosticErrors = function()
 end
 vim.keymap.set('n', ']E', gotoDiagnosticErrors, { desc = 'View errors in diagnostic' })
 vim.keymap.set('n', '[E', gotoDiagnosticErrors, { desc = 'View errors in diagnostic' })
+vim.keymap.set('n', '<leader>du', function() require('dapui').toggle() end, { desc = 'Toggle dapUI' })
 
 -- Leap.nvim (jump to any character)
 vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-anywhere)")
