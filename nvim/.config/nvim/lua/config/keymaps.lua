@@ -25,3 +25,6 @@ keymap.set("n", "<leader>cp", function()
   vim.fn.setreg("+", vim.fn.expand("%"))
   print("Copied relative path: " .. vim.fn.expand("%"))
 end, { desc = "Copy relative path" })
+
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
