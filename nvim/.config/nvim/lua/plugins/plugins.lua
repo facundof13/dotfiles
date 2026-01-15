@@ -44,5 +44,7 @@ return {
   {
     "nvim-mini/mini.animate",
     opts = {},
+    cond = not vim.g.vscode,
   },
+  { "flash.nvim", opts = {}, cond = not vim.g.vscode },
 }
