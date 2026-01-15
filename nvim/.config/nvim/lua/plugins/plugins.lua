@@ -41,4 +41,8 @@ return {
     },
     cond = not vim.g.vscode,
   },
+  {
+    "nvim-mini/mini.animate",
+    opts = {},
+  },
 }

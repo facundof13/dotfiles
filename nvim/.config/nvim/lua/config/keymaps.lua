@@ -26,5 +26,22 @@ keymap.set("n", "<leader>cp", function()
   print("Copied relative path: " .. vim.fn.expand("%"))
 end, { desc = "Copy relative path" })
 
-keymap.set("n", "<C-d>", "<C-d>zz")
-keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("n", "<C-d>", function()
+  -- Trigger the scroll
+  local keys = vim.api.nvim_replace_termcodes("<C-d>", true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
+  -- Center after animation completes
+  require("mini.animate").execute_after("scroll", function()
+    vim.cmd("normal! zz")
+  end)
+end)
+
+keymap.set("n", "<C-u>", function()
+  -- Trigger the scroll
+  local keys = vim.api.nvim_replace_termcodes("<C-u>", true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
+  -- Center after animation completes
+  require("mini.animate").execute_after("scroll", function()
+    vim.cmd("normal! zz")
+  end)
+end)
