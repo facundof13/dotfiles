@@ -13,3 +13,4 @@ opt.autoread = true
 opt.ruler = true
 opt.cursorline = true
 opt.cursorlineopt = "both"
+vim.g.lazyvim_picker = "telescope"

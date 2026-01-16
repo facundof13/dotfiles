@@ -1,5 +1,22 @@
 return {
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      transparent_mode = true,
+      dim_inactive = true,
+      contrast = "hard",
+      overrides = {
+        NormalNC = { bg = "#1d2021" }, -- inactive pane background (matches tmux)
+      },
+    },
+  },
+
+  { "nvim-telescope/telescope.nvim", opts = {
+    keys = {
+      "<leader>fh",
+    },
+  } },
+
   {
     "LazyVim/LazyVim",
     opts = {
@@ -44,7 +61,11 @@ return {
   {
     "nvim-mini/mini.animate",
     opts = {},
-    cond = not vim.g.vscode,
+    cond = false,
   },
   { "flash.nvim", opts = {}, cond = not vim.g.vscode },
+  {
+    "folke/snacks.nvim",
+    opts = { picker = { sources = { explorer = { hidden = true, ignored = true } } } },
+  },
 }
