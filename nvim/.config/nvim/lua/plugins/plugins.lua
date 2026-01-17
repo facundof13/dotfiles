@@ -11,11 +11,17 @@ return {
     },
   },
 
-  { "nvim-telescope/telescope.nvim", opts = {
-    keys = {
-      "<leader>fh",
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        path_display = { "filename_first" },
+      },
+      keys = {
+        "<leader>fh",
+      },
     },
-  } },
+  },
 
   {
     "LazyVim/LazyVim",
@@ -23,6 +29,7 @@ return {
       colorscheme = "gruvbox",
     },
   },
+
   {
     "kylechui/nvim-surround",
     version = "^3.0.0",
@@ -31,6 +38,7 @@ return {
       require("nvim-surround").setup({})
     end,
   },
+
   {
     "numToStr/Comment.nvim",
     opts = {},
@@ -38,6 +46,7 @@ return {
       require("Comment").setup()
     end,
   },
+
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -58,12 +67,15 @@ return {
     },
     cond = not vim.g.vscode,
   },
+
   {
     "nvim-mini/mini.animate",
     opts = {},
     cond = false,
   },
+
   { "flash.nvim", opts = {}, cond = not vim.g.vscode },
+
   {
     "folke/snacks.nvim",
     opts = { picker = { sources = { explorer = { hidden = true, ignored = true } } } },
