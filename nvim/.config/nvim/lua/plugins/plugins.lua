@@ -7,6 +7,10 @@ return {
       contrast = "hard",
       overrides = {
         NormalNC = { bg = "#1d2021" }, -- inactive pane background (matches tmux)
+        -- Flash.nvim highlights
+        FlashLabel = { bg = "#8ec07c", fg = "#1d2021", bold = true }, -- aqua bg, dark text
+        FlashMatch = { bg = "#fabd2f", fg = "#1d2021" }, -- yellow bg
+        FlashCurrent = { bg = "#b8bb26", fg = "#1d2021" }, -- green bg
       },
     },
   },
@@ -16,10 +20,18 @@ return {
     opts = {
       defaults = {
         path_display = { "filename_first" },
+        mappings = {
+          i = {
+            ["<Esc>"] = require("telescope.actions").close,
+          },
+          n = {
+            ["<Esc>"] = require("telescope.actions").close,
+          },
+        },
       },
-      keys = {
-        "<leader>fh",
-      },
+    },
+    keys = {
+      { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Find Diagnostics" },
     },
   },
 
@@ -74,10 +86,39 @@ return {
     cond = false,
   },
 
-  { "flash.nvim", opts = {}, cond = not vim.g.vscode },
+  {
+    "flash.nvim",
+    opts = {
+      jump = {
+        pos = "end", -- jump to end of match
+      },
+    },
+    cond = not vim.g.vscode,
+  },
 
   {
     "folke/snacks.nvim",
     opts = { picker = { sources = { explorer = { hidden = true, ignored = true } } } },
+  },
+
+  {
+    "lualine.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return {}
+    end,
+  },
+
+  {
+    "nvim-lspconfig",
+    opts = function(_, opts)
+      opts["servers"]["vtsls"] = nil
+    end,
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }
