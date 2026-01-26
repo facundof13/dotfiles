@@ -82,3 +82,4 @@ palette = 14=#8ec07c
 palette = 15=#ebdbb2
 
 keybind = shift+enter=text:\x1b\r
+bell-features = system

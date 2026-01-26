@@ -19,6 +19,7 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
+        hidden = true,
         path_display = { "filename_first" },
         mappings = {
           i = {
@@ -28,10 +29,24 @@ return {
             ["<Esc>"] = require("telescope.actions").close,
           },
         },
+        layout_strategy = "flex",
+      },
+    },
+    pickers = {
+      find_files = {
+        hidden = true,
       },
     },
     keys = {
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Find Diagnostics" },
+      -- Swap ff/fF: lowercase = cwd, uppercase = root
+      { "<leader>ff", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
+      { "<leader>fF", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
+      -- Swap sg/sG: lowercase = cwd, uppercase = root
+      { "<leader>sg", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+      { "<leader>sG", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+      { "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
+      { "<leader>fT", "<cmd>TodoTelescope<cr>", desc = "Todo Comments" },
     },
   },
 
@@ -88,17 +103,46 @@ return {
 
   {
     "flash.nvim",
-    opts = {
-      jump = {
-        pos = "end", -- jump to end of match
-      },
-    },
+    opts = {},
     cond = not vim.g.vscode,
   },
 
   {
     "folke/snacks.nvim",
-    opts = { picker = { sources = { explorer = { hidden = true, ignored = true } } } },
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+            win = {
+              list = {
+                keys = {
+                  ["<C-x>"] = { "edit_split", mode = { "n" } },
+                },
+              },
+            },
+          },
+        },
+        actions = {
+          edit_hsplit = function(picker)
+            picker:action("edit_split")
+          end,
+        },
+        win = {
+          input = {
+            keys = {
+              ["<C-x>"] = { "edit_split", mode = { "i", "n" } },
+            },
+          },
+          list = {
+            keys = {
+              ["<C-x>"] = { "edit_split", mode = { "n" } },
+            },
+          },
+        },
+      },
+    },
   },
 
   {
@@ -120,5 +164,10 @@ return {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts) end,
   },
 }
