@@ -18,6 +18,7 @@
 <keypad>
 [rwin]>[ralt]
 <function1>
+[grav]>[F20]
 [rwin]>[ralt]
 [bspc]>[del]
 <function2>
