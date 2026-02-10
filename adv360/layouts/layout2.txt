@@ -12,6 +12,9 @@
 [pgup]>[null]
 [end]>[lalt]
 [pgdn]>[null]
+{f22}>{s5}{x1}{lctr}{d010}{lctr}{d010}{3}
+{f23}>{s5}{x1}{lctr}{d010}{lctr}{d010}{2}
+{f24}>{s5}{x1}{lctr}{d010}{lctr}{d010}{1}
 <keypad>
 [rwin]>[ralt]
 <function1>
