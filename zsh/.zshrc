@@ -142,3 +142,4 @@ esac
 # pnpm end
 alias ll='ls -lhtra'
 alias ls='ls -lhtra'
+export HUSKY=0
