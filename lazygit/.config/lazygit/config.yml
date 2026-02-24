@@ -1,0 +1,21 @@
+gui:
+  scrollHeight: 5
+  showFileTree: false
+  showNumstatInFilesView: true
+  border: rounded
+  filterMode: fuzzy
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --syntax-theme base16-256 --diff-so-fancy
+  commitPrefix:
+    - pattern: "^(.*)"
+      replace: "$1"
+  branchPrefix: "ONW-"
+os:
+  edit: "nvim --server /tmp/nvim.sock --remote-tab {{filename}}"
+  editAtLine: "nvim --server /tmp/nvim.sock --remote-tab {{filename}} +{{line}}"
+  editAtLineAndWait: "nvim --server /tmp/nvim.sock --remote-tab-wait {{filename}} +{{line}}"
+  open: "nvim --server /tmp/nvim.sock --remote-tab {{filename}}"
+
+notARepository: quit
