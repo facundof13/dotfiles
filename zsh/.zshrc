@@ -133,6 +133,13 @@ nvim() {
 }
 export PATH="$HOME/.local/bin:$PATH"
 
+claudefast() {
+  META_CLAUDE_CODE_NATIVE_BIN=1 \
+  META_CLAUDE_USE_ANTHROPIC_DIRECT=1 \
+  META_ANTHROPIC_API_KEY=$(claude-meta inference get-secret OPUS_FAST_API_KEY) \
+  claude --dangerously-skip-permissions "$@"
+}
+
 # pnpm
 export PNPM_HOME="/Users/facundof/Library/pnpm"
 case ":$PATH:" in
@@ -143,3 +150,51 @@ esac
 alias ll='ls -lhtra'
 alias ls='ls -lhtra'
 export HUSKY=0
+
+mango() {
+  local window_id
+  window_id=$(tmux display-message -p '#{window_id}')
+
+  local name="$1"
+  if [[ -z "$name" ]]; then
+    echo "Usage: mango <worktree-name>"
+    return 1
+  fi
+
+  local repo_dir="$HOME/Developer/multimango.com"
+  local worktree_dir="$HOME/.multimango/worktrees/$name"
+
+  # Ensure we're in tmux
+  if [[ -z "$TMUX" ]]; then
+    echo "Error: must be inside a tmux session"
+    return 1
+  fi
+
+  # Run setup-worktree.sh; timeout kills the exec'd shell that lingers after setup
+  (cd "$repo_dir" && SHELL=/usr/bin/true ./scripts/setup-worktree.sh "$name")
+  local exit_code=$?
+  # 124 = timeout killed the exec'd shell, which is expected
+  if [[ $exit_code -ne 0 && $exit_code -ne 124 ]]; then
+    echo "Error: setup-worktree.sh failed (exit code $exit_code)"
+    return 1
+  fi
+
+  # Rename the current tmux window
+  tmux rename-window -t "$window_id" "$name"
+
+  # Pane 0 (current): run claudefast
+  tmux send-keys -t "$window_id" "cd $worktree_dir && claudefast" Enter
+
+  # Split vertically -> pane 1: lazygit
+  tmux split-window -h -t "$window_id" -c "$worktree_dir"
+  tmux send-keys -t "$window_id" "lg" Enter
+
+  # Split pane 1 horizontally -> pane 2: pnpm dev
+  tmux split-window -v -t "$window_id" -c "$worktree_dir"
+  tmux send-keys -t "$window_id" "pnpm dev" Enter
+
+  # Focus back on the claudefast pane
+  tmux select-pane -t -t "${window_id}.0"
+}
+
+e2e() { SKIP_WEBSERVER=1 E2E_PORT=${1:?"Usage: e2e <port> [path]"} pnpm test:e2e ${2:-e2e/mango-eval-studio} }
