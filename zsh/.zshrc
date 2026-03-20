@@ -198,3 +198,6 @@ mango() {
 }
 
 e2e() { SKIP_WEBSERVER=1 E2E_PORT=${1:?"Usage: e2e <port> [path]"} pnpm test:e2e ${2:-e2e/mango-eval-studio} }
+
+# halp — natural language to shell command (Ctrl+G)
+source "$HOME/dotfiles/zsh/halp.zsh"
