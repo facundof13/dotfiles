@@ -1,3 +1,4 @@
+if [ "$TMUX" = "" ]; then tmux; fi
 [ -f /usr/facebook/ops/rc/master.zshrc ] && source /usr/facebook/ops/rc/master.zshrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -26,6 +27,7 @@ cdf() {
 	fi
 }
 
+export HUSKY=0
 alias lg="lazygit"
 alias reloadzsh=". ~/.zshrc"
 alias editzsh="code ~/.zshrc"
@@ -149,7 +151,6 @@ esac
 # pnpm end
 alias ll='ls -lhtra'
 alias ls='ls -lhtra'
-export HUSKY=0
 
 mango() {
   local window_id
