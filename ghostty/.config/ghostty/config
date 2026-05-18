@@ -83,3 +83,5 @@ palette = 15=#ebdbb2
 
 keybind = shift+enter=text:\x1b\r
 bell-features = system
+custom-shader = shaders/cursor_smear.glsl
+cursor-style = block

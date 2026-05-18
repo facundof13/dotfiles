@@ -1,4 +1,8 @@
 if [ "$TMUX" = "" ]; then tmux; fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 [ -f /usr/facebook/ops/rc/master.zshrc ] && source /usr/facebook/ops/rc/master.zshrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -12,10 +16,6 @@ ENABLE_CORRECTION="true"
 plugins=(git)
 
 setopt inc_append_history
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # cd to the path of the front Finder window
 cdf() {
@@ -119,8 +119,8 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_MINUS
 
-# Set cursor to vertical line (beam)
-echo -ne '\e[6 q'
+# Set cursor to block
+echo -ne '\e[2 q'
 
 PS1='%n@%m %~ $ '
 alias rg="rg -i"
