@@ -31,10 +31,22 @@ return {
         },
         layout_strategy = "flex",
       },
-    },
-    pickers = {
-      find_files = {
-        hidden = true,
+      pickers = {
+        find_files = {
+          hidden = true,
+          find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--no-ignore-vcs",
+            "--glob",
+            "!**/node_modules/**",
+            "--glob",
+            "!**/.git/**",
+            "--glob",
+            "!**/.angular/**",
+          },
+        },
       },
     },
     keys = {
@@ -55,6 +67,13 @@ return {
     opts = {
       colorscheme = "gruvbox",
     },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed or {}, { "prisma" })
+    end,
   },
 
   {
