@@ -139,7 +139,7 @@ claudefast() {
   META_CLAUDE_CODE_NATIVE_BIN=1 \
   META_CLAUDE_USE_ANTHROPIC_DIRECT=1 \
   META_ANTHROPIC_API_KEY=$(claude-meta inference get-secret OPUS_FAST_API_KEY) \
-  claude --dangerously-skip-permissions "$@"
+  claude --dangerously-skip-permissions --dangerously-enable-internet-mode "$@"
 }
 
 # pnpm
@@ -199,3 +199,7 @@ mango() {
 }
 
 e2e() { SKIP_WEBSERVER=1 E2E_PORT=${1:?"Usage: e2e <port> [path]"} pnpm test:e2e ${2:-e2e/mango-eval-studio} }
+
+# Use Claude Code's classic inline renderer (not fullscreen) so terminal/tmux
+# scrollback works normally in directly-started `claude` sessions.
+export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1
