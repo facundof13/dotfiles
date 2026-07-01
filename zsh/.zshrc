@@ -203,3 +203,5 @@ e2e() { SKIP_WEBSERVER=1 E2E_PORT=${1:?"Usage: e2e <port> [path]"} pnpm test:e2e
 # Use Claude Code's classic inline renderer (not fullscreen) so terminal/tmux
 # scrollback works normally in directly-started `claude` sessions.
 export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1
+
+alias primedev='ssh -MNf dev && echo "master up"'
